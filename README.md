@@ -47,9 +47,19 @@ This fits the residual stream mostly carrying tokens forward between these layer
 - **(A)** cross-position links should be more common for real features than for random directions;
 - **(B)** the word 1 → word 2 link should be stronger for predictable pairs than for their matched controls (Wilcoxon signed-rank test);
 - **(C)** ablating that feature should lower P(word 2) more for predictable pairs.
-**Results**
+
+## Results 
  
-> _Not run yet. Paste the output of the notebook's "Summary" cell here, add `experiment2_summary.png`, and write two or three sentences on whether (A), (B) and (C) held. A null result counts._
+Gemma-2B, layer 6 -> 12, 18 matched pairs (36 sentences), K_PER_POS=5, threshold 0.1.
+Manipulation check: word 2 more likely after the predictable word 1 in 17/18 pairs.
+
+(A) Real features: 3227 strong links, 2946 same-position, 281 cross-position (8.7%).
+    Random directions: 3899 strong links, 1382 cross-position.
+    
+(B) Word 1 -> word 2 link: predictable > control in 3/18 pairs, Wilcoxon p = 0.00105.
+
+(C) Delta log P(word 2) after ablating the linked word-1 feature: Wilcoxon p = 0.154.
+Causality check (should be ~0): 0.0e+00
  
 ## Running it
  
